@@ -18,16 +18,19 @@ class BinanceClient:
         load_dotenv()
         
         # Read the keys into memory
-        self.api_key = os.getenv("BINANCE_API_KEY")
-        self.api_secret = os.getenv("BINANCE_API_SECRET")
+        api_key = os.getenv("BINANCE_API_KEY")
+        api_secret = os.getenv("BINANCE_API_SECRET")
         self.base_url = os.getenv("BINANCE_BASE_URL", "https://testnet.binancefuture.com")
 
         # Validation: If the keys are missing or still the default placeholders from .env.example
-        if not self.api_key or not self.api_secret or self.api_key == "your_testnet_api_key_here":
+        if not api_key or not api_secret or api_key == "your_testnet_api_key_here":
             raise ValueError(
                 "BINANCE_API_KEY and BINANCE_API_SECRET must be set in .env\n"
                 "Copy .env.example to .env and fill in your testnet credentials."
             )
+            
+        self.api_key: str = api_key
+        self.api_secret: str = api_secret
 
         # Create a persistent HTTP session for efficiency
         self.session = requests.Session()
