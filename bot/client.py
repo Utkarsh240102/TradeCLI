@@ -9,7 +9,7 @@ import requests
 from dotenv import load_dotenv
 
 from bot import BinanceAPIError, NetworkError
-
+ 
 
 class BinanceClient:
     def __init__(self) -> None:
