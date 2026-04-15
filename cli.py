@@ -61,9 +61,9 @@ def place_order(symbol: str = typer.Argument(...,
                                           "-p",
                                           help="Limit price (required for LIMIT)"),
                 stop_price: str = typer.Option(None,
-                                          "--stop-price",
-                                          "-s",
-                                          help="Stop price / Trigger price (required for STOP_MARKET)"),
+                                               "--stop-price",
+                                               "-s",
+                                               help="Stop price / Trigger price (required for STOP_MARKET)"),
                 ):
     """
     Place a new order on Binance Futures Testnet.
@@ -84,7 +84,7 @@ def place_order(symbol: str = typer.Argument(...,
     if order_type == "LIMIT" and price is None:
         print_error("Price is required for LIMIT orders.")
         raise typer.Exit(code=1)
-        
+
     if order_type == "STOP_MARKET" and stop_price is None:
         print_error("Stop price is required for STOP_MARKET orders.")
         raise typer.Exit(code=1)

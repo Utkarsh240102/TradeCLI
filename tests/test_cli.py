@@ -43,7 +43,7 @@ def test_place_order_stop_market_success(mock_client, mock_stop):
                             "SELL",
                             "STOP_MARKET",
                             "0.05",
-                             "--stop-price",
+                            "--stop-price",
                             "40000"])
 
     assert result.exit_code == 0
