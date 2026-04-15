@@ -92,3 +92,39 @@ def place_limit_order(
     
     return formatted
 
+
+def place_stop_market_order(
+    client: BinanceClient,
+    symbol: str,
+    side: str,
+    quantity: str,
+    stop_price: str,
+) -> dict:
+    """Place a STOP_MARKET order (bonus). Triggers a market order when stopPrice is hit."""
+    # 1. Validate the user input strictly
+    clean_symbol = validate_symbol(symbol)
+    clean_side = validate_side(side)
+    clean_qty = validate_quantity(quantity)
+    clean_stop = validate_stop_price(stop_price, "STOP_MARKET")
+
+    # 2. Construct the exact parameters expected by Binance
+    params = {
+        "symbol":     clean_symbol,
+        "side":       clean_side,
+        "type":       "STOP_MARKET",
+        "quantity":   str(clean_qty),
+        "stopPrice":  str(clean_stop),
+    }
+
+    # 3. Log our intent to the terminal/file before hitting the network
+    logger.info(f"Placing STOP_MARKET {clean_side} {clean_qty} {clean_symbol} trigger @ {clean_stop}")
+    
+    # 4. Send the request
+    response = client.post("/fapi/v1/order", params)
+    
+    # 5. Format and return the result
+    formatted = _format_response(response)
+    logger.info(f"Order placed. ID: {formatted['orderId']} | Status: {formatted['status']}")
+    
+    return formatted
+
