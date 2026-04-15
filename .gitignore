@@ -44,3 +44,7 @@ Thumbs.db
 # Note: We specifically DO NOT ignore logs/trading_bot.log as it is a required deliverable for the assignment.
 *.log
 !logs/trading_bot.log
+
+
+steps.md
+plan.md
