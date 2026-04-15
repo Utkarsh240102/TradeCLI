@@ -13,9 +13,13 @@ def mock_env(monkeypatch):
     monkeypatch.setenv("BINANCE_API_SECRET", "test_secret")
     monkeypatch.setenv("BINANCE_BASE_URL", "https://testnet.binancefuture.com")
 
-def test_client_init_missing_keys(monkeypatch):
+@patch("bot.client.load_dotenv")
+def test_client_init_missing_keys(mock_load_dotenv, monkeypatch):
     """Test that the client raises an error if API keys are missing."""
+    # Ensure environment variables are strictly missing using monkeypatch
     monkeypatch.delenv("BINANCE_API_KEY", raising=False)
+    monkeypatch.delenv("BINANCE_API_SECRET", raising=False)
+    
     with pytest.raises(ValueError, match="BINANCE_API_KEY and BINANCE_API_SECRET must be set"):
         BinanceClient()
 
