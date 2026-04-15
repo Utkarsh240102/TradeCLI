@@ -2,6 +2,7 @@ import logging
 import sys
 from pathlib import Path
 
+
 def setup_logging() -> None:
     """Configure file (DEBUG) and console (INFO) handlers for the trading_bot logger."""
     logger = logging.getLogger("trading_bot")
