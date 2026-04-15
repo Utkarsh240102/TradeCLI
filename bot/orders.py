@@ -21,3 +21,37 @@ def _format_response(raw: dict) -> dict:
         "avgPrice":     raw.get("avgPrice", raw.get("price", "N/A")),
         "cumQuote":     raw.get("cumQuote", "N/A"),
     }
+
+
+def place_market_order(
+    client: BinanceClient,
+    symbol: str,
+    side: str,
+    quantity: str,
+) -> dict:
+    """Place a MARKET order. Returns formatted response dict."""
+    # 1. Validate the user input strictly
+    clean_symbol = validate_symbol(symbol)
+    clean_side = validate_side(side)
+    clean_qty = validate_quantity(quantity)
+
+    # 2. Construct the exact parameters expected by Binance
+    params = {
+        "symbol":   clean_symbol,
+        "side":     clean_side,
+        "type":     "MARKET",
+        "quantity": str(clean_qty),
+    }
+
+    # 3. Log our intent to the terminal/file before hitting the network
+    logger.info(f"Placing MARKET {clean_side} {clean_qty} {clean_symbol}")
+    
+    # 4. Send the request
+    response = client.post("/fapi/v1/order", params)
+    
+    # 5. Format and return the result
+    formatted = _format_response(response)
+    logger.info(f"Order placed. ID: {formatted['orderId']} | Status: {formatted['status']}")
+    
+    return formatted
+
