@@ -20,7 +20,7 @@ TradeCLI/
 ├── cli.py                 # Typer application root, argument parsing, and UI presentation
 ├── tests/                 # Pytest suite 
 ├── logs/                  # Directory for outputting trading_bot.log
-├── .env                   # Environment variables (API credentials)
+├── .env.example           # Template for environment variables (API credentials)
 ├── .flake8                # Linter configuration
 ├── requirements.txt       # Project dependencies
 └── Readme.md              # You are here
@@ -98,7 +98,7 @@ python cli.py place-order ETHUSDT SELL STOP_MARKET 0.05 --stop-price 3000
 Run the included test and linting suite to verify component logic.
 
 **1. Unit Testing**
-Includes 42 unit tests covering all validator functions, API logic, and CLI commands.
+Includes 42 unit tests comprehensively covering validator functions, order placement flows, HMAC signing logic, and CLI error states.
 ```bash
 pytest --cov=bot --cov=cli tests/
 ```
@@ -114,6 +114,7 @@ flake8 bot/ cli.py tests/
 ```
 
 ## Key Assumptions & Design Choices
+- **One-Way Position Mode:** The Binance Testnet account must be set to One-Way Mode, not Hedge Mode. (Hedge Mode requires a `positionSide` parameter which is not implemented here).
 - **USDT-Margined Futures Framework:** The bot interacts explicitly with the `/fapi/v1/order` endpoint for USDT-M futures on the Binance Testnet.
 - **Time in Force:** LIMIT orders automatically inject `timeInForce="GTC"` (Good 'Til Canceled) into the payload as it is mandatory for resting limit orders on Binance's backend.
 - **Server-Side Precision Validation:** To minimize latency and overhead, the bot validates basic types but allows Binance's server to act as the ultimate source of truth for numeric precision requirements (lot sizes/tick sizes). It returns any server limits elegantly back to the user via the CLI output.
