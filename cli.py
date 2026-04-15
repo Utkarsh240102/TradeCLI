@@ -50,7 +50,7 @@ def main():
 @app.command()
 def place_order(symbol: str = typer.Argument(...,
                                              help="Trading pair symbol (e.g., BTCUSDT)"),
-                side: str = typer.Argument(...,
+                cat logs/trading_bot.log                side: str = typer.Argument(...,
                                            help="Order side: BUY or SELL"),
                 order_type: str = typer.Argument(...,
                                                  help="Order type: MARKET, LIMIT, or STOP_MARKET"),
