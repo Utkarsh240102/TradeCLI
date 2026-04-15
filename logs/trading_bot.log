@@ -450,3 +450,39 @@
 2026-04-16T02:05:56 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP_MARKET', 'quantity': '0.01', 'stopPrice': '60000', 'timestamp': 1776285356586, 'recvWindow': 5000}
 2026-04-16T02:05:57 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
 2026-04-16T02:05:57 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-04-16T02:06:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285392277, 'recvWindow': 5000}
+2026-04-16T02:06:32 | DEBUG    | trading_bot.client | Response 200: {'orderId': 12345, 'symbol': 'BTCUSDT', 'status': 'NEW'}
+2026-04-16T02:06:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285392288, 'recvWindow': 5000}
+2026-04-16T02:06:32 | DEBUG    | trading_bot.client | Response 400: {'code': -1102, 'msg': "Mandatory parameter 'timeInForce' was not sent, was empty/null..."}
+2026-04-16T02:06:32 | ERROR    | trading_bot.client | Binance API error [-1102]: Mandatory parameter 'timeInForce' was not sent, was empty/null...
+2026-04-16T02:06:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285392296, 'recvWindow': 5000}
+2026-04-16T02:06:32 | ERROR    | trading_bot.client | Request timeout: POST /fapi/v1/order
+2026-04-16T02:06:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285392305, 'recvWindow': 5000}
+2026-04-16T02:06:32 | ERROR    | trading_bot.client | Connection error: POST /fapi/v1/order
+2026-04-16T02:06:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285392310, 'recvWindow': 5000}
+2026-04-16T02:06:32 | ERROR    | trading_bot.client | Non-JSON response [502]: <html>502 Bad Gateway</html>
+2026-04-16T02:06:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285392317, 'recvWindow': 5000}
+2026-04-16T02:06:32 | DEBUG    | trading_bot.client | Response 500: {'other': 'error'}
+2026-04-16T02:06:32 | ERROR    | trading_bot.client | HTTP 500: {"other": "error"}
+2026-04-16T02:06:32 | INFO     | trading_bot.orders | Placing MARKET BUY 0.05 ETHUSDT
+2026-04-16T02:06:32 | INFO     | trading_bot.orders | Order placed. ID: 111 | Status: N/A
+2026-04-16T02:06:32 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.1 BTCUSDT @ 50000
+2026-04-16T02:06:32 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
+2026-04-16T02:06:32 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
+2026-04-16T02:06:32 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
+2026-04-16T02:06:34 | INFO     | trading_bot.orders | Placing MARKET BUY 0.01 BTCUSDT
+2026-04-16T02:06:34 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.01', 'timestamp': 1776285394953, 'recvWindow': 5000}
+2026-04-16T02:06:35 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037746630, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'n5EYmqOqsAEiuxVu5mwCI8', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776285395662}
+2026-04-16T02:06:35 | INFO     | trading_bot.orders | Order placed. ID: 13037746630 | Status: NEW
+2026-04-16T02:06:35 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.01 BTCUSDT @ 75000
+2026-04-16T02:06:35 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.01', 'price': '75000', 'timeInForce': 'GTC', 'timestamp': 1776285395825, 'recvWindow': 5000}
+2026-04-16T02:06:36 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037746641, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'u3qnR5ZPc26kFahtVls4ur', 'price': '75000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776285396587}
+2026-04-16T02:06:36 | INFO     | trading_bot.orders | Order placed. ID: 13037746641 | Status: NEW
+2026-04-16T02:06:44 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.01 BTCUSDT trigger @ 60000
+2026-04-16T02:06:44 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'STOP_MARKET', 'quantity': '0.01', 'stopPrice': '60000', 'timestamp': 1776285404283, 'recvWindow': 5000}
+2026-04-16T02:06:44 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
+2026-04-16T02:06:44 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-04-16T02:06:48 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.01 BTCUSDT trigger @ 60000
+2026-04-16T02:06:48 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'STOP_MARKET', 'quantity': '0.01', 'stopPrice': '60000', 'timestamp': 1776285408398, 'recvWindow': 5000}
+2026-04-16T02:06:48 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
+2026-04-16T02:06:48 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
