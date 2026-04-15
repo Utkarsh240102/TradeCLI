@@ -12,14 +12,14 @@ logger = logging.getLogger("trading_bot.orders")
 def _format_response(raw: dict) -> dict:
     """Extract the specific fields the assignment requires in output."""
     return {
-        "orderId":      raw.get("orderId", "N/A"),
-        "symbol":       raw.get("symbol", "N/A"),
-        "status":       raw.get("status", "N/A"),
-        "side":         raw.get("side", "N/A"),
-        "type":         raw.get("type", "N/A"),
-        "executedQty":  raw.get("executedQty", "0"),
-        "avgPrice":     raw.get("avgPrice", raw.get("price", "N/A")),
-        "cumQuote":     raw.get("cumQuote", "N/A"),
+        "orderId": raw.get("orderId", "N/A"),
+        "symbol": raw.get("symbol", "N/A"),
+        "status": raw.get("status", "N/A"),
+        "side": raw.get("side", "N/A"),
+        "type": raw.get("type", "N/A"),
+        "executedQty": raw.get("executedQty", "0"),
+        "avgPrice": raw.get("avgPrice", raw.get("price", "N/A")),
+        "cumQuote": raw.get("cumQuote", "N/A"),
     }
 
 
@@ -37,22 +37,25 @@ def place_market_order(
 
     # 2. Construct the exact parameters expected by Binance
     params = {
-        "symbol":   clean_symbol,
-        "side":     clean_side,
-        "type":     "MARKET",
+        "symbol": clean_symbol,
+        "side": clean_side,
+        "type": "MARKET",
         "quantity": str(clean_qty),
     }
 
     # 3. Log our intent to the terminal/file before hitting the network
     logger.info(f"Placing MARKET {clean_side} {clean_qty} {clean_symbol}")
-    
+
     # 4. Send the request
     response = client.post("/fapi/v1/order", params)
-    
+
     # 5. Format and return the result
     formatted = _format_response(response)
-    logger.info(f"Order placed. ID: {formatted['orderId']} | Status: {formatted['status']}")
-    
+    logger.info(
+        f"Order placed. ID: {
+            formatted['orderId']} | Status: {
+            formatted['status']}")
+
     return formatted
 
 
@@ -72,24 +75,28 @@ def place_limit_order(
 
     # 2. Construct the exact parameters expected by Binance
     params = {
-        "symbol":      clean_symbol,
-        "side":        clean_side,
-        "type":        "LIMIT",
-        "quantity":    str(clean_qty),
-        "price":       str(clean_price),
+        "symbol": clean_symbol,
+        "side": clean_side,
+        "type": "LIMIT",
+        "quantity": str(clean_qty),
+        "price": str(clean_price),
         "timeInForce": "GTC",   # Required for LIMIT orders — omitting causes -1102
     }
 
     # 3. Log our intent to the terminal/file before hitting the network
-    logger.info(f"Placing LIMIT {clean_side} {clean_qty} {clean_symbol} @ {clean_price}")
-    
+    logger.info(
+        f"Placing LIMIT {clean_side} {clean_qty} {clean_symbol} @ {clean_price}")
+
     # 4. Send the request
     response = client.post("/fapi/v1/order", params)
-    
+
     # 5. Format and return the result
     formatted = _format_response(response)
-    logger.info(f"Order placed. ID: {formatted['orderId']} | Status: {formatted['status']}")
-    
+    logger.info(
+        f"Order placed. ID: {
+            formatted['orderId']} | Status: {
+            formatted['status']}")
+
     return formatted
 
 
@@ -109,22 +116,25 @@ def place_stop_market_order(
 
     # 2. Construct the exact parameters expected by Binance
     params = {
-        "symbol":     clean_symbol,
-        "side":       clean_side,
-        "type":       "STOP_MARKET",
-        "quantity":   str(clean_qty),
-        "stopPrice":  str(clean_stop),
+        "symbol": clean_symbol,
+        "side": clean_side,
+        "type": "STOP_MARKET",
+        "quantity": str(clean_qty),
+        "stopPrice": str(clean_stop),
     }
 
     # 3. Log our intent to the terminal/file before hitting the network
-    logger.info(f"Placing STOP_MARKET {clean_side} {clean_qty} {clean_symbol} trigger @ {clean_stop}")
-    
+    logger.info(
+        f"Placing STOP_MARKET {clean_side} {clean_qty} {clean_symbol} trigger @ {clean_stop}")
+
     # 4. Send the request
     response = client.post("/fapi/v1/order", params)
-    
+
     # 5. Format and return the result
     formatted = _format_response(response)
-    logger.info(f"Order placed. ID: {formatted['orderId']} | Status: {formatted['status']}")
-    
-    return formatted
+    logger.info(
+        f"Order placed. ID: {
+            formatted['orderId']} | Status: {
+            formatted['status']}")
 
+    return formatted
