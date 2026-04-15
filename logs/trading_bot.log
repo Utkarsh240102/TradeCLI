@@ -53,3 +53,36 @@
 2026-04-16T00:10:50 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
 2026-04-16T00:10:50 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
 2026-04-16T00:10:50 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
+2026-04-16T00:14:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776278642040, 'recvWindow': 5000}
+2026-04-16T00:14:02 | DEBUG    | trading_bot.client | Response 200: {'orderId': 12345, 'symbol': 'BTCUSDT', 'status': 'NEW'}
+2026-04-16T00:14:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776278642047, 'recvWindow': 5000}
+2026-04-16T00:14:02 | DEBUG    | trading_bot.client | Response 400: {'code': -1102, 'msg': "Mandatory parameter 'timeInForce' was not sent, was empty/null..."}
+2026-04-16T00:14:02 | ERROR    | trading_bot.client | Binance API error [-1102]: Mandatory parameter 'timeInForce' was not sent, was empty/null...
+2026-04-16T00:14:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776278642053, 'recvWindow': 5000}
+2026-04-16T00:14:02 | ERROR    | trading_bot.client | Request timeout: POST /fapi/v1/order
+2026-04-16T00:14:02 | INFO     | trading_bot.orders | Placing MARKET BUY 0.05 ETHUSDT
+2026-04-16T00:14:02 | INFO     | trading_bot.orders | Order placed. ID: 111 | Status: N/A
+2026-04-16T00:14:02 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.1 BTCUSDT @ 50000
+2026-04-16T00:14:02 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
+2026-04-16T00:14:02 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
+2026-04-16T00:14:02 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
+2026-04-16T00:15:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776278702160, 'recvWindow': 5000}
+2026-04-16T00:15:02 | DEBUG    | trading_bot.client | Response 200: {'orderId': 12345, 'symbol': 'BTCUSDT', 'status': 'NEW'}
+2026-04-16T00:15:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776278702168, 'recvWindow': 5000}
+2026-04-16T00:15:02 | DEBUG    | trading_bot.client | Response 400: {'code': -1102, 'msg': "Mandatory parameter 'timeInForce' was not sent, was empty/null..."}
+2026-04-16T00:15:02 | ERROR    | trading_bot.client | Binance API error [-1102]: Mandatory parameter 'timeInForce' was not sent, was empty/null...
+2026-04-16T00:15:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776278702174, 'recvWindow': 5000}
+2026-04-16T00:15:02 | ERROR    | trading_bot.client | Request timeout: POST /fapi/v1/order
+2026-04-16T00:15:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776278702178, 'recvWindow': 5000}
+2026-04-16T00:15:02 | ERROR    | trading_bot.client | Connection error: POST /fapi/v1/order
+2026-04-16T00:15:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776278702182, 'recvWindow': 5000}
+2026-04-16T00:15:02 | ERROR    | trading_bot.client | Non-JSON response [502]: <html>502 Bad Gateway</html>
+2026-04-16T00:15:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776278702187, 'recvWindow': 5000}
+2026-04-16T00:15:02 | DEBUG    | trading_bot.client | Response 500: {'other': 'error'}
+2026-04-16T00:15:02 | ERROR    | trading_bot.client | HTTP 500: {"other": "error"}
+2026-04-16T00:15:02 | INFO     | trading_bot.orders | Placing MARKET BUY 0.05 ETHUSDT
+2026-04-16T00:15:02 | INFO     | trading_bot.orders | Order placed. ID: 111 | Status: N/A
+2026-04-16T00:15:02 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.1 BTCUSDT @ 50000
+2026-04-16T00:15:02 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
+2026-04-16T00:15:02 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
+2026-04-16T00:15:02 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
