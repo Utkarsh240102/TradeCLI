@@ -28,9 +28,12 @@ share/python-wheels/
 .installed.cfg
 *.egg
 
-# Pytest
+# Pytest & Coverage
 .pytest_cache/
 .tox/
+.coverage
+htmlcov/
+.mypy_cache/
 
 # VS Code / IDE
 .vscode/
