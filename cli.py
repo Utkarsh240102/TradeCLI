@@ -2,6 +2,9 @@ import typer
 from rich.console import Console
 import logging
 from bot.logging_config import setup_logging
+from bot.client import BinanceClient
+from bot.orders import place_market_order, place_limit_order, place_stop_market_order
+from bot import BinanceAPIError, NetworkError
 
 # Initialize Typer App and Rich Console
 app = typer.Typer(help="Binance Futures Testnet Trading Bot CLI")
@@ -34,6 +37,61 @@ def main():
     setup_logging()
     logger = logging.getLogger(__name__)
     logger.debug("CLI initialized and logging configured.")
+
+@app.command()
+def place_order(
+    symbol: str = typer.Argument(..., help="Trading pair symbol (e.g., BTCUSDT)"),
+    side: str = typer.Argument(..., help="Order side: BUY or SELL"),
+    order_type: str = typer.Argument(..., help="Order type: MARKET, LIMIT, or STOP_MARKET"),
+    quantity: str = typer.Argument(..., help="Order quantity in base asset"),
+    price: str = typer.Option(None, "--price", "-p", help="Limit or Stop price (required for LIMIT / STOP_MARKET)"),
+):
+    """
+    Place a new order on Binance Futures Testnet.
+    """
+    logger = logging.getLogger(__name__)
+    
+    side = side.upper()
+    order_type = order_type.upper()
+    
+    if side not in ["BUY", "SELL"]:
+        print_error("Side must be BUY or SELL")
+        raise typer.Exit(code=1)
+        
+    if order_type not in ["MARKET", "LIMIT", "STOP_MARKET"]:
+        print_error("Order type must be MARKET, LIMIT, or STOP_MARKET")
+        raise typer.Exit(code=1)
+        
+    if order_type in ["LIMIT", "STOP_MARKET"] and price is None:
+        print_error(f"Price is required for {order_type} orders.")
+        raise typer.Exit(code=1)
+
+    try:
+        client = BinanceClient()
+        logger.info(f"Attempting to place {order_type} {side} order for {quantity} {symbol}.")
+        
+        if order_type == "MARKET":
+            response = place_market_order(client, symbol=symbol, side=side, quantity=quantity)
+        elif order_type == "LIMIT":
+            response = place_limit_order(client, symbol=symbol, side=side, quantity=quantity, price=price)
+        elif order_type == "STOP_MARKET":
+            response = place_stop_market_order(client, symbol=symbol, side=side, quantity=quantity, stop_price=price)
+            
+        print_success(f"Order successfully placed! Order ID: {response.get('orderId', 'Unknown')}")
+        print_json_response(response, title="Order Details")
+        
+    except BinanceAPIError as e:
+        print_error(f"Binance API Rejected the Order: {str(e)}")
+        logger.error(f"API Error during `place_order`: {e}")
+        raise typer.Exit(code=1)
+    except NetworkError as e:
+        print_error(f"Network issue: {str(e)}")
+        logger.error(f"Network Error during `place_order`: {e}")
+        raise typer.Exit(code=1)
+    except Exception as e:
+        print_error(f"An unexpected error occurred: {str(e)}")
+        logger.exception("Unexpected error in `place_order`")
+        raise typer.Exit(code=1)
 
 if __name__ == "__main__":
     app()
