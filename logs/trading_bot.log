@@ -446,3 +446,7 @@
 2026-04-16T02:05:02 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'STOP_MARKET', 'quantity': '0.01', 'stopPrice': '60000', 'timestamp': 1776285302917, 'recvWindow': 5000}
 2026-04-16T02:05:03 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
 2026-04-16T02:05:03 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-04-16T02:05:56 | INFO     | trading_bot.orders | Placing STOP_MARKET BUY 0.01 BTCUSDT trigger @ 60000
+2026-04-16T02:05:56 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'STOP_MARKET', 'quantity': '0.01', 'stopPrice': '60000', 'timestamp': 1776285356586, 'recvWindow': 5000}
+2026-04-16T02:05:57 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
+2026-04-16T02:05:57 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
