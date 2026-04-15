@@ -83,7 +83,8 @@ python cli.py place-order BTCUSDT SELL LIMIT 0.01 --price 75000
 ```
 
 ### 3. Place a STOP_MARKET Order (Bonus)
-Requires the `--stop-price` (`-s`) option flag, which natively acts as the `stopPrice` parameter payload. Displays an order request summary before execution.
+Requires the `--stop-price` (`-s`) option flag, which natively acts as the `stopPrice` parameter payload. Displays an order request summary before execution. 
+*(Note: Binance Testnet occasionally restricts `STOP_MARKET` on the standard `/order` endpoint for certain pairs, returning API error `[-4120] Order type not supported`. The CLI elegantly intercepts and displays this exact API rejection without crashing).*
 ```bash
 python cli.py place-order ETHUSDT SELL STOP_MARKET 0.05 --stop-price 3000
 ```
