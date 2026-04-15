@@ -1,91 +1,119 @@
-# Binance Futures Testnet Trading Bot
+﻿# Binance Futures Testnet Trading Bot
 
-A professional-grade, pure-Python Command-Line Interface (CLI) for executing programmatic trades on the Binance Futures Testnet. It features native HMAC SHA-256 request signing, a strictly decoupled MVC-style architecture, and a beautiful, strictly-typed terminal output using Typer and Rich.
+A professional-grade, pure-Python Command-Line Interface (CLI) for executing programmatic trades on the Binance Futures Testnet (USDT-M). Built to satisfy the PrimeTrade.ai Application Task, this project features native HMAC SHA-256 request signing, a strictly decoupled MVC-style architecture, comprehensive test coverage, and a beautiful, strictly-typed terminal output using Typer and Rich.
 
-## 🌟 Key Features
-- **Zero Heavy Abstractions**: Avoids bulky wrappers like `python-binance`. Utilizes native Python `hashlib` and `requests` for explicit REST API interaction.
-- **Precision First**: Uses exact JSON-first error parsing directly from Binance headers to prevent silent failures and generic stack traces.
-- **Robust Local Validation**: Validates user inputs (Symbol formats, Sides, Order Types, and Prices) locally in pure Python *before* attempting network requests, saving latency and API rate limits.
-- **Dual-Handler Logging**: Simultaneously outputs clean, colorized info logs to the Rich console, whilst streaming granular DEBUG network traffic into `logs/trading_bot.log`.
-- **Elegant User Interface**: Implements `typer` arguments and options to build a highly intuitive CLI interface.
-
-## 📋 Prerequisites
-Before running the bot, ensure you have:
-1. Python 3.10+ installed.
-2. A **Binance Testnet Account** (Futures). Generate your free API keys by heading to the [Binance Mock Trading](https://testnet.binancefuture.com/) portal and logging in with a test account.
+## 🎯 Assignment Completion & Bonus Features Achieved
+- **Core Requirements:** Places Market and Limit orders (BUY/SELL) on Binance Futures Testnet natively via HTTP (no bulky python-binance wrappers). Validates input and gracefully handles exceptions.
+- **Bonus 1 (3rd Order Type):** Successfully implemented **STOP_MARKET** orders requiring dynamic trigger payload construction.
+- **Bonus 2 (Enhanced CLI UX):** Utilized **Typer** and **Rich** to build a stunning, color-coded terminal UI with formatted JSON tables and readable error states.
 
 ## 🏗️ Project Architecture
-The codebase strictly separates concerns into logic layers:
-- `bot/validators.py`: Handles pure string and numeric validations natively.
-- `bot/client.py`: Manages internet transport, secure `.env` credential loading, millisecond timestamp generation, and the core HMAC signature algorithm.
-- `bot/orders.py`: The business logic layer. Composes routing instructions (Market, Limit, Stop Market), dictates parameters like `timeInForce="GTC"`, and prepares REST payloads.
-- `cli.py`: The user-interface root. It initializes Typer, manages Rich color schemes, parses command arguments, and handles graceful exits for both API and network errors.
+The codebase strictly follows the assignment's suggested decoupled structure to separate concerns:
+`	ext
+TradeCLI/
+├── bot/
+│   ├── __init__.py
+│   ├── client.py          # HTTP transport, timestamping, HMAC SHA-256 signature logic 
+│   ├── orders.py          # Business logic (Market, Limit, Stop Market payload creation)
+│   ├── validators.py      # Input validation for symbols, prices, and quantities
+│   └── logging_config.py  # Dual-handler logger (Rich Console + File)
+├── cli.py                 # Typer application root, argument parsing, and UI presentation
+├── tests/                 # Comprehensive Pytest suite simulating all local logic
+├── logs/                  # Ignored directory for outputting trading_bot.log
+├── .env                   # Environment variables (API credentials)
+├── .flake8                # Linter configuration
+├── requirements.txt       # Project dependencies
+└── Readme.md              # You are here
+`
+
+## 📋 Prerequisites
+1. **Python 3.10+** installed on your system.
+2. A **Binance Futures Testnet Account**. Generate your API keys by logging into the [Binance Mock Trading](https://testnet.binancefuture.com/) portal.
 
 ## 🚀 Setup Instructions
 
-1. **Clone the repository & Navigate to folder**
-   ```bash
-   git clone <your-repo-url>
-   cd TradeCLI
-   ```
+**1. Clone the repository**
+`ash
+git clone <your-repo-url>
+cd TradeCLI
+`
 
-2. **Create and Activate Virtual Environment**
-   ```bash
-   python -m venv venv
-   
-   # On Windows (PowerShell):
-   .\venv\Scripts\activate
-   
-   # On Mac/Linux:
-   source venv/bin/activate
-   ```
+**2. Create & Activate a Virtual Environment**
+`ash
+# Windows (PowerShell)
+python -m venv venv
+.\venv\Scripts\activate
 
-3. **Install Dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-   *(Note: The project explicitly pins `click==8.1.7` for `typer` compatibility).*
+# Mac/Linux
+python3 -m venv venv
+source venv/bin/activate
+`
 
-4. **Environment Variables**
-   Duplicate `.env.example` to `.env` and map your credentials securely:
-   ```env
-   BINANCE_API_KEY="your_testnet_api_key_here"
-   BINANCE_API_SECRET="your_testnet_api_secret_here"
-   BINANCE_BASE_URL="https://testnet.binancefuture.com"
-   ```
+**3. Install Dependencies**
+`ash
+pip install -r requirements.txt
+`
+
+**4. Configure Environment Variables**
+Copy .env.example to a new file named .env and add your Testnet credentials:
+`env
+BINANCE_API_KEY="your_testnet_api_key_here"
+BINANCE_API_SECRET="your_testnet_api_secret_here"
+BINANCE_BASE_URL="https://testnet.binancefuture.com"
+`
 
 ## 💻 Usage & CLI Commands
 
-You can always invoke the `--help` flag for a breakdown of argument requirements:
-```bash
+Access the integrated help menu at any time:
+`ash
 python cli.py place-order --help
-```
+`
 
-**1. Place a Market Order (Instant Fill)**
-```bash
-# syntax: python cli.py place-order <SYMBOL> <SIDE> MARKET <QTY>
-python cli.py place-order BTCUSDT BUY MARKET 0.001
-```
+### 1. Place a MARKET Order (Instant Fill)
+Executes immediately at the best available market price.
+`ash
+# Syntax: cli.py place-order <SYMBOL> <SIDE> MARKET <QTY>
+python cli.py place-order BTCUSDT BUY MARKET 0.01
+`
 
-**2. Place a Limit Order (Rests on Order Book)**
-```bash
-# Requires the --price / -p flag
-python cli.py place-order ETHUSDT SELL LIMIT 0.05 --price 3500.50
-```
+### 2. Place a LIMIT Order (Rests on Order Book)
+Requires the --price (-p) flag. The order rests until the market reaches your target.
+`ash
+python cli.py place-order BTCUSDT SELL LIMIT 0.01 --price 75000
+`
 
-**3. Place a Stop Market Order (Trigger Condition)**
-```bash
-python cli.py place-order SOLUSDT BUY STOP_MARKET 1.0 --price 160.00
-```
+### 3. Place a STOP_MARKET Order (Trigger Condition)
+Requires the --price (-p) flag, which natively acts as the stopPrice parameter payload.
+`ash
+python cli.py place-order ETHUSDT SELL STOP_MARKET 0.05 --price 3000
+`
 
-## 🔍 Logging and Error Handling
-- **Debugging**: If something fails, open `logs/trading_bot.log`. The bot automatically streams the exact payload dicts, exact query strings, and exact timestamps sent to Binance in real-time.
-- **Fail Gracefully**: If you trigger a Binance error (e.g., `-1102`), the console will elegantly display a bold red message summarizing the error directly from Binance's servers, rather than printing an unreadable 50-line Python Traceback.
+## 🔍 Logging & Error Handling
+- **Dual-Logging System**: 
+  - **Console:** The user sees elegant, color-coded success tables and simple summaries cleanly separated from network noise.
+  - **File (logs/trading_bot.log):** Actively captures raw HTTP POST requests, precise timestamps, parameter payloads, and full API JSON responses for auditing.
+- **Graceful Failures:** If Binance rejects an order (e.g., limit price out of bounds), the CLI intercepts the exact error code (like -4024) from the JSON body and displays a highly readable red formatting block, completely avoiding arbitrary Python Tracebacks.
 
-## 🧪 Running Tests
-This project uses Pytest for local unit assurance on all validators and numerical logic. Ensure you have the virtual environment activated, then run:
+## 🧪 Development, QA & Testing
+This project was built with production-grade quality assurance in mind.
 
-```bash
-pytest tests/ -v
-```
-*(Confirms validations for symbols, zero-quantity orders, step sizes, and formatting).*
+**1. Unit Testing (Near 100% Coverage)**
+`ash
+pytest --cov=bot --cov=cli tests/
+`
+All validators, client payloads, and order logic are fully covered.
+
+**2. Static Type Checking**
+`ash
+mypy bot/ cli.py
+`
+
+**3. Code Linting (PEP-8)**
+`ash
+flake8 bot/ cli.py tests/
+`
+
+## 💡 Key Assumptions
+- **USDT-Margined Futures Framework**: As per the core objective, this bot interacts explicitly with the /fapi/v1/order endpoint for USDT-M futures on the Binance Testnet.
+- **Time in Force**: LIMIT orders automatically inject 	imeInForce="GTC" (Good 'Til Canceled) into the payload as it is mandatory for resting limit orders on Binance's backend.
+- **Server-Side Precision Validation**: To significantly minimize latency and overhead (avoiding scraping and caching Exchange Info tick-sizes locally), the bot allows Binance's server to act as the ultimate source of truth for numeric precision requirements (lot sizes/tick sizes), returning any server rejections elegantly back to the user via the CLI format.
