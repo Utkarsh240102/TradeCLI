@@ -1,14 +1,14 @@
 # Binance Futures Testnet Trading Bot
 
-A Python Command-Line Interface (CLI) application for executing programmatic trades on the Binance Futures Testnet (USDT-M). This project implements native HMAC SHA-256 request signing, adheres to a decoupled MVC-style architecture, includes comprehensive test coverage, and provides clear terminal output.
+A Python Command-Line Interface (CLI) application for executing programmatic trades on the Binance Futures Testnet (USDT-M). This project implements native HMAC SHA-256 request signing, adheres to a decoupled, layered architecture, includes unit tests for core validation logic, and provides clear terminal output.
 
 ## Features & Capabilities
 - **Native Implementation:** Places Market and Limit orders on Binance Futures Testnet directly via REST HTTP requests. Validates input and gracefully handles exceptions.
 - **Bonus Feature:** Successfully implemented **STOP_MARKET** orders requiring dynamic trigger payload construction.
-- **Interactive CLI UX:** Utilizes Typer and Rich to build a concise terminal UI, including pre-execution order request summaries, formatted JSON response tables, and readable error states.
+- **Interactive CLI UX:** Utilizes Typer and Rich to build a clean terminal output, including pre-execution order request summaries, formatted JSON response tables, and readable error states.
 
 ## Architecture & Project Structure
-The codebase strictly follows a decoupled structure to separate concerns effectively:
+The codebase strictly follows a modular, layered structure to separate concerns effectively:
 ```text
 TradeCLI/
 ├── bot/
