@@ -83,21 +83,22 @@ python cli.py place-order BTCUSDT SELL LIMIT 0.01 --price 75000
 ```
 
 ### 3. Place a STOP_MARKET Order (Bonus)
-Requires the `--price` (`-p`) option flag, which natively acts as the `stopPrice` parameter payload. Displays an order request summary before execution.
+Requires the `--stop-price` (`-s`) option flag, which natively acts as the `stopPrice` parameter payload. Displays an order request summary before execution.
 ```bash
-python cli.py place-order ETHUSDT SELL STOP_MARKET 0.05 --price 3000
+python cli.py place-order ETHUSDT SELL STOP_MARKET 0.05 --stop-price 3000
 ```
 
 ## Logging & Error Handling
 - **Dual-Logging System:** 
   - **Console:** Provides an active order request summary beforehand, followed by clear success tables cleanly separated from network noise.
-  - **File (`logs/trading_bot.log`):** Actively captures raw HTTP POST requests, timestamps, parameter payloads, and full API JSON responses for auditing.
+  - **File (`logs/trading_bot.log`):** Actively captures raw HTTP POST requests, timestamps, parameter payloads, and full API JSON responses for auditing. Included in this repository as functionally verified order logs.
 - **Graceful Failures:** If Binance rejects an order (e.g., limit price out of bounds), the CLI intercepts the exact error code (like `-4024`) from the JSON body and displays a readable error block, avoiding arbitrary Python Tracebacks.
 
 ## Testing & Quality Assurance
 Run the included test and linting suite to verify component logic.
 
 **1. Unit Testing**
+Includes 42 unit tests covering all validator functions, API logic, and CLI commands.
 ```bash
 pytest --cov=bot --cov=cli tests/
 ```
