@@ -286,3 +286,155 @@
 2026-04-16T01:51:54 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
 2026-04-16T01:51:54 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
 2026-04-16T01:51:54 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
+2026-04-16T01:53:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284612636, 'recvWindow': 5000}
+2026-04-16T01:53:32 | DEBUG    | trading_bot.client | Response 200: {'orderId': 12345, 'symbol': 'BTCUSDT', 'status': 'NEW'}
+2026-04-16T01:53:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284612643, 'recvWindow': 5000}
+2026-04-16T01:53:32 | DEBUG    | trading_bot.client | Response 400: {'code': -1102, 'msg': "Mandatory parameter 'timeInForce' was not sent, was empty/null..."}
+2026-04-16T01:53:32 | ERROR    | trading_bot.client | Binance API error [-1102]: Mandatory parameter 'timeInForce' was not sent, was empty/null...
+2026-04-16T01:53:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284612649, 'recvWindow': 5000}
+2026-04-16T01:53:32 | ERROR    | trading_bot.client | Request timeout: POST /fapi/v1/order
+2026-04-16T01:53:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284612653, 'recvWindow': 5000}
+2026-04-16T01:53:32 | ERROR    | trading_bot.client | Connection error: POST /fapi/v1/order
+2026-04-16T01:53:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284612656, 'recvWindow': 5000}
+2026-04-16T01:53:32 | ERROR    | trading_bot.client | Non-JSON response [502]: <html>502 Bad Gateway</html>
+2026-04-16T01:53:32 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284612661, 'recvWindow': 5000}
+2026-04-16T01:53:32 | DEBUG    | trading_bot.client | Response 500: {'other': 'error'}
+2026-04-16T01:53:32 | ERROR    | trading_bot.client | HTTP 500: {"other": "error"}
+2026-04-16T01:53:32 | INFO     | trading_bot.orders | Placing MARKET BUY 0.05 ETHUSDT
+2026-04-16T01:53:32 | INFO     | trading_bot.orders | Order placed. ID: 111 | Status: N/A
+2026-04-16T01:53:32 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.1 BTCUSDT @ 50000
+2026-04-16T01:53:32 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
+2026-04-16T01:53:32 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
+2026-04-16T01:53:32 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
+2026-04-16T01:53:43 | INFO     | trading_bot.orders | Placing MARKET BUY 0.01 BTCUSDT
+2026-04-16T01:53:43 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.01', 'timestamp': 1776284623735, 'recvWindow': 5000}
+2026-04-16T01:53:44 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037730676, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'ytohlokzJ6utDDSfYqkfkP', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776284624444}
+2026-04-16T01:53:44 | INFO     | trading_bot.orders | Order placed. ID: 13037730676 | Status: NEW
+2026-04-16T01:53:47 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.01 BTCUSDT @ 75000
+2026-04-16T01:53:47 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.01', 'price': '75000', 'timeInForce': 'GTC', 'timestamp': 1776284627957, 'recvWindow': 5000}
+2026-04-16T01:53:48 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037730759, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'BtaAqFST6m54LY6tGfYAhQ', 'price': '75000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776284628598}
+2026-04-16T01:53:48 | INFO     | trading_bot.orders | Order placed. ID: 13037730759 | Status: NEW
+2026-04-16T01:54:14 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.01 BTCUSDT @ 75000
+2026-04-16T01:54:14 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.01', 'price': '75000', 'timeInForce': 'GTC', 'timestamp': 1776284654902, 'recvWindow': 5000}
+2026-04-16T01:54:15 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037731354, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'l8tsKZqEEdDpJ8hxsoSiV1', 'price': '75000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776284655525}
+2026-04-16T01:54:15 | INFO     | trading_bot.orders | Order placed. ID: 13037731354 | Status: NEW
+2026-04-16T01:54:19 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.05 ETHUSDT trigger @ 3000
+2026-04-16T01:54:19 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'ETHUSDT', 'side': 'SELL', 'type': 'STOP_MARKET', 'quantity': '0.05', 'stopPrice': '3000', 'timestamp': 1776284659741, 'recvWindow': 5000}
+2026-04-16T01:54:20 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
+2026-04-16T01:54:20 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-04-16T01:57:01 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284821327, 'recvWindow': 5000}
+2026-04-16T01:57:01 | DEBUG    | trading_bot.client | Response 200: {'orderId': 12345, 'symbol': 'BTCUSDT', 'status': 'NEW'}
+2026-04-16T01:57:01 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284821335, 'recvWindow': 5000}
+2026-04-16T01:57:01 | DEBUG    | trading_bot.client | Response 400: {'code': -1102, 'msg': "Mandatory parameter 'timeInForce' was not sent, was empty/null..."}
+2026-04-16T01:57:01 | ERROR    | trading_bot.client | Binance API error [-1102]: Mandatory parameter 'timeInForce' was not sent, was empty/null...
+2026-04-16T01:57:01 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284821340, 'recvWindow': 5000}
+2026-04-16T01:57:01 | ERROR    | trading_bot.client | Request timeout: POST /fapi/v1/order
+2026-04-16T01:57:01 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284821344, 'recvWindow': 5000}
+2026-04-16T01:57:01 | ERROR    | trading_bot.client | Connection error: POST /fapi/v1/order
+2026-04-16T01:57:01 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284821348, 'recvWindow': 5000}
+2026-04-16T01:57:01 | ERROR    | trading_bot.client | Non-JSON response [502]: <html>502 Bad Gateway</html>
+2026-04-16T01:57:01 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284821353, 'recvWindow': 5000}
+2026-04-16T01:57:01 | DEBUG    | trading_bot.client | Response 500: {'other': 'error'}
+2026-04-16T01:57:01 | ERROR    | trading_bot.client | HTTP 500: {"other": "error"}
+2026-04-16T01:57:01 | INFO     | trading_bot.orders | Placing MARKET BUY 0.05 ETHUSDT
+2026-04-16T01:57:01 | INFO     | trading_bot.orders | Order placed. ID: 111 | Status: N/A
+2026-04-16T01:57:01 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.1 BTCUSDT @ 50000
+2026-04-16T01:57:01 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
+2026-04-16T01:57:01 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
+2026-04-16T01:57:01 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
+2026-04-16T01:57:09 | INFO     | trading_bot.orders | Placing MARKET BUY 0.01 BTCUSDT
+2026-04-16T01:57:09 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.01', 'timestamp': 1776284829292, 'recvWindow': 5000}
+2026-04-16T01:57:09 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037736252, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'flIyZwnijWPZTLnLbAozDD', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776284830020}
+2026-04-16T01:57:09 | INFO     | trading_bot.orders | Order placed. ID: 13037736252 | Status: NEW
+2026-04-16T01:57:13 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.01 BTCUSDT @ 75000
+2026-04-16T01:57:13 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.01', 'price': '75000', 'timeInForce': 'GTC', 'timestamp': 1776284833840, 'recvWindow': 5000}
+2026-04-16T01:57:14 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037736542, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'h1GucD3NmsAO1P7g7YdnQi', 'price': '75000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776284834475}
+2026-04-16T01:57:14 | INFO     | trading_bot.orders | Order placed. ID: 13037736542 | Status: NEW
+2026-04-16T01:57:17 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.05 ETHUSDT trigger @ 3000
+2026-04-16T01:57:17 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'ETHUSDT', 'side': 'SELL', 'type': 'STOP_MARKET', 'quantity': '0.05', 'stopPrice': '3000', 'timestamp': 1776284837736, 'recvWindow': 5000}
+2026-04-16T01:57:18 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
+2026-04-16T01:57:18 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-04-16T01:58:14 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284894482, 'recvWindow': 5000}
+2026-04-16T01:58:14 | DEBUG    | trading_bot.client | Response 200: {'orderId': 12345, 'symbol': 'BTCUSDT', 'status': 'NEW'}
+2026-04-16T01:58:14 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284894489, 'recvWindow': 5000}
+2026-04-16T01:58:14 | DEBUG    | trading_bot.client | Response 400: {'code': -1102, 'msg': "Mandatory parameter 'timeInForce' was not sent, was empty/null..."}
+2026-04-16T01:58:14 | ERROR    | trading_bot.client | Binance API error [-1102]: Mandatory parameter 'timeInForce' was not sent, was empty/null...
+2026-04-16T01:58:14 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284894493, 'recvWindow': 5000}
+2026-04-16T01:58:14 | ERROR    | trading_bot.client | Request timeout: POST /fapi/v1/order
+2026-04-16T01:58:14 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284894497, 'recvWindow': 5000}
+2026-04-16T01:58:14 | ERROR    | trading_bot.client | Connection error: POST /fapi/v1/order
+2026-04-16T01:58:14 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284894501, 'recvWindow': 5000}
+2026-04-16T01:58:14 | ERROR    | trading_bot.client | Non-JSON response [502]: <html>502 Bad Gateway</html>
+2026-04-16T01:58:14 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776284894506, 'recvWindow': 5000}
+2026-04-16T01:58:14 | DEBUG    | trading_bot.client | Response 500: {'other': 'error'}
+2026-04-16T01:58:14 | ERROR    | trading_bot.client | HTTP 500: {"other": "error"}
+2026-04-16T01:58:14 | INFO     | trading_bot.orders | Placing MARKET BUY 0.05 ETHUSDT
+2026-04-16T01:58:14 | INFO     | trading_bot.orders | Order placed. ID: 111 | Status: N/A
+2026-04-16T01:58:14 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.1 BTCUSDT @ 50000
+2026-04-16T01:58:14 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
+2026-04-16T01:58:14 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
+2026-04-16T01:58:14 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
+2026-04-16T01:58:30 | INFO     | trading_bot.orders | Placing MARKET BUY 0.01 BTCUSDT
+2026-04-16T01:58:30 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.01', 'timestamp': 1776284910205, 'recvWindow': 5000}
+2026-04-16T01:58:30 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037737757, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'DkyQw6WwujxVwqD8jaLyKJ', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776284910917}
+2026-04-16T01:58:30 | INFO     | trading_bot.orders | Order placed. ID: 13037737757 | Status: NEW
+2026-04-16T01:58:33 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.01 BTCUSDT @ 75000
+2026-04-16T01:58:33 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.01', 'price': '75000', 'timeInForce': 'GTC', 'timestamp': 1776284913274, 'recvWindow': 5000}
+2026-04-16T01:58:33 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037737792, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'KufuHzlFkLdxKuIsrqOnVy', 'price': '75000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776284913918}
+2026-04-16T01:58:33 | INFO     | trading_bot.orders | Order placed. ID: 13037737792 | Status: NEW
+2026-04-16T02:01:10 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285070238, 'recvWindow': 5000}
+2026-04-16T02:01:10 | DEBUG    | trading_bot.client | Response 200: {'orderId': 12345, 'symbol': 'BTCUSDT', 'status': 'NEW'}
+2026-04-16T02:01:10 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285070244, 'recvWindow': 5000}
+2026-04-16T02:01:10 | DEBUG    | trading_bot.client | Response 400: {'code': -1102, 'msg': "Mandatory parameter 'timeInForce' was not sent, was empty/null..."}
+2026-04-16T02:01:10 | ERROR    | trading_bot.client | Binance API error [-1102]: Mandatory parameter 'timeInForce' was not sent, was empty/null...
+2026-04-16T02:01:10 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285070250, 'recvWindow': 5000}
+2026-04-16T02:01:10 | ERROR    | trading_bot.client | Request timeout: POST /fapi/v1/order
+2026-04-16T02:01:10 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285070254, 'recvWindow': 5000}
+2026-04-16T02:01:10 | ERROR    | trading_bot.client | Connection error: POST /fapi/v1/order
+2026-04-16T02:01:10 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285070257, 'recvWindow': 5000}
+2026-04-16T02:01:10 | ERROR    | trading_bot.client | Non-JSON response [502]: <html>502 Bad Gateway</html>
+2026-04-16T02:01:10 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285070262, 'recvWindow': 5000}
+2026-04-16T02:01:10 | DEBUG    | trading_bot.client | Response 500: {'other': 'error'}
+2026-04-16T02:01:10 | ERROR    | trading_bot.client | HTTP 500: {"other": "error"}
+2026-04-16T02:01:10 | INFO     | trading_bot.orders | Placing MARKET BUY 0.05 ETHUSDT
+2026-04-16T02:01:10 | INFO     | trading_bot.orders | Order placed. ID: 111 | Status: N/A
+2026-04-16T02:01:10 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.1 BTCUSDT @ 50000
+2026-04-16T02:01:10 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
+2026-04-16T02:01:10 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
+2026-04-16T02:01:10 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
+2026-04-16T02:01:37 | INFO     | trading_bot.orders | Placing MARKET BUY 0.01 BTCUSDT
+2026-04-16T02:01:37 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.01', 'timestamp': 1776285097576, 'recvWindow': 5000}
+2026-04-16T02:01:38 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037740855, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': '9AG4pUbwNBUiPGaXQxslRE', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776285098294}
+2026-04-16T02:01:38 | INFO     | trading_bot.orders | Order placed. ID: 13037740855 | Status: NEW
+2026-04-16T02:01:42 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.01 BTCUSDT @ 75000
+2026-04-16T02:01:42 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.01', 'price': '75000', 'timeInForce': 'GTC', 'timestamp': 1776285102510, 'recvWindow': 5000}
+2026-04-16T02:01:42 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037740909, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'e7QasQaJLOaVU4lnbPIrIa', 'price': '75000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776285103152}
+2026-04-16T02:01:42 | INFO     | trading_bot.orders | Order placed. ID: 13037740909 | Status: NEW
+2026-04-16T02:03:47 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285227212, 'recvWindow': 5000}
+2026-04-16T02:03:47 | DEBUG    | trading_bot.client | Response 200: {'orderId': 12345, 'symbol': 'BTCUSDT', 'status': 'NEW'}
+2026-04-16T02:03:47 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285227220, 'recvWindow': 5000}
+2026-04-16T02:03:47 | DEBUG    | trading_bot.client | Response 400: {'code': -1102, 'msg': "Mandatory parameter 'timeInForce' was not sent, was empty/null..."}
+2026-04-16T02:03:47 | ERROR    | trading_bot.client | Binance API error [-1102]: Mandatory parameter 'timeInForce' was not sent, was empty/null...
+2026-04-16T02:03:47 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285227226, 'recvWindow': 5000}
+2026-04-16T02:03:47 | ERROR    | trading_bot.client | Request timeout: POST /fapi/v1/order
+2026-04-16T02:03:47 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285227231, 'recvWindow': 5000}
+2026-04-16T02:03:47 | ERROR    | trading_bot.client | Connection error: POST /fapi/v1/order
+2026-04-16T02:03:47 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285227234, 'recvWindow': 5000}
+2026-04-16T02:03:47 | ERROR    | trading_bot.client | Non-JSON response [502]: <html>502 Bad Gateway</html>
+2026-04-16T02:03:47 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'timestamp': 1776285227239, 'recvWindow': 5000}
+2026-04-16T02:03:47 | DEBUG    | trading_bot.client | Response 500: {'other': 'error'}
+2026-04-16T02:03:47 | ERROR    | trading_bot.client | HTTP 500: {"other": "error"}
+2026-04-16T02:03:47 | INFO     | trading_bot.orders | Placing MARKET BUY 0.05 ETHUSDT
+2026-04-16T02:03:47 | INFO     | trading_bot.orders | Order placed. ID: 111 | Status: N/A
+2026-04-16T02:03:47 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.1 BTCUSDT @ 50000
+2026-04-16T02:03:47 | INFO     | trading_bot.orders | Order placed. ID: 222 | Status: N/A
+2026-04-16T02:03:47 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.1 BTCUSDT trigger @ 40000
+2026-04-16T02:03:47 | INFO     | trading_bot.orders | Order placed. ID: 333 | Status: N/A
+2026-04-16T02:03:49 | INFO     | trading_bot.orders | Placing MARKET BUY 0.01 BTCUSDT
+2026-04-16T02:03:49 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.01', 'timestamp': 1776285229856, 'recvWindow': 5000}
+2026-04-16T02:03:50 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037743007, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'tfhNUfSQi5vqtnmlGTSHxg', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776285230549}
+2026-04-16T02:03:50 | INFO     | trading_bot.orders | Order placed. ID: 13037743007 | Status: NEW
+2026-04-16T02:03:50 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.01 BTCUSDT @ 75000
+2026-04-16T02:03:50 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.01', 'price': '75000', 'timeInForce': 'GTC', 'timestamp': 1776285230796, 'recvWindow': 5000}
+2026-04-16T02:03:51 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13037743024, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': '2UOTgWAvYawrnsvCFwOWxx', 'price': '75000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1776285231455}
+2026-04-16T02:03:51 | INFO     | trading_bot.orders | Order placed. ID: 13037743024 | Status: NEW
