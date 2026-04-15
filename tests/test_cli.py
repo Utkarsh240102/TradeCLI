@@ -19,8 +19,36 @@ def test_place_order_market_success(mock_client, mock_place_order):
     assert "✓ SUCCESS" in result.stdout
     assert "555" in result.stdout
 
-def test_place_order_invalid_side():
-    """Test that specifying an invalid side throws an error."""
+def test_place_order_invalid_order_type():
+    """Test that specifying an invalid order type throws an error."""
+    result = runner.invoke(app, ["place-order", "BTCUSDT", "BUY", "TRAILING_STOP", "0.05"])
+    
+    assert result.exit_code == 1
+    assert "Order type must be MARKET, LIMIT, or STOP_MARKET" in result.stdout
+    assert "✗ ERROR" in result.stdout
+
+@patch("cli.place_stop_market_order")
+@patch("cli.BinanceClient")
+def test_place_order_stop_market_success(mock_client, mock_stop):
+    """Test that a STOP_MARKET order triggers properly."""
+    mock_stop.return_value = {"orderId": 999, "status": "NEW"}
+    
+    result = runner.invoke(app, ["place-order", "BTCUSDT", "SELL", "STOP_MARKET", "0.05", "--price", "40000"])
+    
+    assert result.exit_code == 0
+    assert "✓ SUCCESS" in result.stdout
+    assert "999" in result.stdout
+
+@patch("cli.place_market_order")
+@patch("cli.BinanceClient")
+def test_place_order_generic_exception(mock_client, mock_market):
+    """Test how CLI handles a completely unhandled Exception."""
+    mock_market.side_effect = Exception("System meltdown!")
+    
+    result = runner.invoke(app, ["place-order", "BTCUSDT", "BUY", "MARKET", "0.05"])
+    
+    assert result.exit_code == 1
+    assert "An unexpected error occurred: System meltdown!" in result.stdout
     result = runner.invoke(app, ["place-order", "BTCUSDT", "HODL", "MARKET", "0.05"])
     
     assert result.exit_code == 1

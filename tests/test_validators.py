@@ -58,10 +58,41 @@ def test_validate_price_none_for_limit_raises():
 def test_validate_price_valid():
     assert validate_price("45000.5", "LIMIT") == Decimal("45000.5")
 
+def test_validate_price_invalid_literal():
+    with pytest.raises(ValueError, match="Price must be a valid number"):
+        validate_price("abc", "LIMIT")
+
+def test_validate_price_zero_raises():
+    with pytest.raises(ValueError, match="Price must be greater than 0"):
+        validate_price("0", "LIMIT")
+
+
 # --- Stop Price Validators ---
 def test_validate_stop_price_none_for_stop_market_raises():
     with pytest.raises(ValueError, match="required for STOP_MARKET"):
         validate_stop_price(None, "STOP_MARKET")
 
+def test_validate_stop_price_none_for_other():
+    from bot.validators import validate_stop_price
+    assert validate_stop_price(None, "LIMIT") is None
+
 def test_validate_stop_price_valid():
     assert validate_stop_price("44000.0", "STOP_MARKET") == Decimal("44000.0")
+
+def test_validate_stop_price_invalid_literal():
+    from bot.validators import validate_stop_price
+    with pytest.raises(ValueError, match="Stop price must be a valid number"):
+        validate_stop_price("xyz", "STOP_MARKET")
+
+def test_validate_stop_price_zero_raises():
+    from bot.validators import validate_stop_price
+    with pytest.raises(ValueError, match="Stop price must be greater than 0"):
+        validate_stop_price("-10", "STOP_MARKET")
+
+def test_round_to_step():
+    from bot.validators import round_to_step
+    from decimal import Decimal
+    val = round_to_step(Decimal("123.456"), "0.1")
+    assert val == Decimal("123.4")
+    val2 = round_to_step(Decimal("123.499"), "0.5")
+    assert val2 == Decimal("123.0")

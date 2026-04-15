@@ -83,3 +83,38 @@ def test_post_network_timeout(mock_post, mock_env):
     
     with pytest.raises(NetworkError, match="Request timed out after 10s"):
         client.post("/fapi/v1/order", {"symbol": "BTCUSDT"})
+
+@patch("requests.Session.post")
+def test_post_network_connection_error(mock_post, mock_env):
+    """Test how the client handles a connection error."""
+    mock_post.side_effect = requests.exceptions.ConnectionError()
+    client = BinanceClient()
+    
+    with pytest.raises(NetworkError, match="Cannot connect to Binance testnet"):
+        client.post("/fapi/v1/order", {"symbol": "BTCUSDT"})
+
+@responses.activate
+def test_post_non_json_response(mock_env):
+    """Test how the client handles a server returning HTML/Text instead of JSON."""
+    client = BinanceClient()
+    responses.add(
+        responses.POST,
+        "https://testnet.binancefuture.com/fapi/v1/order",
+        body="<html>502 Bad Gateway</html>",
+        status=502
+    )
+    with pytest.raises(NetworkError, match="Binance returned non-JSON response"):
+        client.post("/fapi/v1/order", {"symbol": "BTCUSDT"})
+
+@responses.activate
+def test_post_unexpected_http_error(mock_env):
+    """Test how the client handles 4xx/5xx status codes that somehow ARE JSON but NOT BinanceAPI errors."""
+    client = BinanceClient()
+    responses.add(
+        responses.POST,
+        "https://testnet.binancefuture.com/fapi/v1/order",
+        json={"other": "error"},
+        status=500
+    )
+    with pytest.raises(NetworkError, match="Unexpected HTTP 500 from Binance"):
+        client.post("/fapi/v1/order", {"symbol": "BTCUSDT"})
