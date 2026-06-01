@@ -18,7 +18,7 @@ def _format_response(raw: dict) -> dict:
         "side": raw.get("side", "N/A"),
         "type": raw.get("type", "N/A"),
         "executedQty": raw.get("executedQty", "0"),
-        "avgPrice": raw.get("avgPrice", raw.get("price", "N/A")),
+        "avgPrice": raw.get("avgPrice", "N/A"),
         "cumQuote": raw.get("cumQuote", "N/A"),
     }
 

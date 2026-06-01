@@ -77,3 +77,10 @@ def test_place_stop_market_order():
 
     assert called_args[1]["type"] == "STOP_MARKET"
     assert called_args[1]["stopPrice"] == "40000"
+
+
+def test_format_response_missing_avg_price():
+    """avgPrice should default to N/A, not fall back to the price field."""
+    raw = {"orderId": 1, "price": "50000.00", "status": "NEW"}
+    formatted = _format_response(raw)
+    assert formatted["avgPrice"] == "N/A"

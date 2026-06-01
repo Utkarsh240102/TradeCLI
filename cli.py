@@ -73,10 +73,6 @@ def place_order(symbol: str = typer.Argument(...,
     side = side.upper()
     order_type = order_type.upper()
 
-    if side not in ["BUY", "SELL"]:
-        print_error("Side must be BUY or SELL")
-        raise typer.Exit(code=1)
-
     if order_type not in ["MARKET", "LIMIT", "STOP_MARKET"]:
         print_error("Order type must be MARKET, LIMIT, or STOP_MARKET")
         raise typer.Exit(code=1)
@@ -91,6 +87,19 @@ def place_order(symbol: str = typer.Argument(...,
 
     try:
         client = BinanceClient()
+
+        # Print order request summary before execution
+        console.print("\n[bold cyan]📋 Order Request Summary[/bold cyan]")
+        console.print(f"  [dim]Symbol:[/dim]     {symbol}")
+        console.print(f"  [dim]Side:[/dim]       {side}")
+        console.print(f"  [dim]Type:[/dim]       {order_type}")
+        console.print(f"  [dim]Quantity:[/dim]   {quantity}")
+        if price:
+            console.print(f"  [dim]Price:[/dim]      {price}")
+        if stop_price:
+            console.print(f"  [dim]Stop Price:[/dim] {stop_price}")
+        console.print()
+
         logger.info(
             f"Attempting to place {order_type} {side} order for {quantity} {symbol}.")
 

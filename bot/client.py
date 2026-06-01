@@ -97,11 +97,9 @@ class BinanceClient:
         # Check if Binance successfully received the request but deliberately
         # rejected the trade
         if isinstance(data, dict) and data.get("code", 0) < 0:
-            self.logger.error(
-                f"Binance API error [{
-                    data['code']}]: {
-                    data['msg']}")
-            raise BinanceAPIError(data["code"], data["msg"])
+            error_msg = data.get("msg", "Unknown error")
+            self.logger.error(f"Binance API error [{data['code']}]: {error_msg}")
+            raise BinanceAPIError(data["code"], error_msg)
 
         # Check for standard HTTP 4xx/5xx crashes not caught above
         try:
