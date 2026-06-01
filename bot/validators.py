@@ -17,15 +17,6 @@ def validate_side(side: str) -> str:
     return cleaned
 
 
-def validate_order_type(order_type: str) -> str:
-    """Accepts MARKET, LIMIT, STOP_MARKET case-insensitively."""
-    cleaned = order_type.strip().upper()
-    if cleaned not in ("MARKET", "LIMIT", "STOP_MARKET"):
-        raise ValueError(
-            f"Order type must be MARKET, LIMIT, or STOP_MARKET, got: '{order_type}'")
-    return cleaned
-
-
 def validate_quantity(quantity: str) -> Decimal:
     """Parses to Decimal. Raises ValueError if non-numeric or <= 0."""
     try:
@@ -70,10 +61,3 @@ def validate_stop_price(
     if sp <= 0:
         raise ValueError(f"Stop price must be greater than 0, got: {sp}")
     return sp
-
-
-def round_to_step(value: Decimal, step: str) -> Decimal:
-    """Round value DOWN to the nearest step increment (for stepSize/tickSize compliance)."""
-    from decimal import ROUND_DOWN
-    step_dec = Decimal(step)
-    return (value / step_dec).to_integral_value(rounding=ROUND_DOWN) * step_dec
