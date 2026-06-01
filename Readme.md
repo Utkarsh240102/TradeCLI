@@ -6,6 +6,10 @@ A Python Command-Line Interface (CLI) application for executing programmatic tra
 - **Native Implementation:** Places Market and Limit orders on Binance Futures Testnet directly via REST HTTP requests. Validates input and gracefully handles exceptions.
 - **Bonus Feature:** Successfully implemented **STOP_MARKET** orders requiring dynamic trigger payload construction.
 - **Interactive CLI UX:** Utilizes Typer and Rich to build a clean terminal output, including pre-execution order request summaries, formatted JSON response tables, and readable error states.
+- **Robust Validation & Error Handling:** CLI inputs are strictly validated (e.g. numeric types, positive values) with dedicated handlers for user errors, network issues, and API rejections, preventing raw stack traces from reaching the user.
+- **Accurate Response Formatting:** Extracts and normalizes Binance response fields, ensuring metrics like average fill price (`avgPrice`) are correctly reported without misleading fallbacks.
+- **Clean Audit Logging:** Uses a dual-handler logging system. Console output is kept clean for the user, while a dedicated `trading_bot.log` file captures raw HTTP transactions. The Pytest suite strictly isolates its mock output to prevent deliverable log pollution.
+- **Credential Security:** API keys are loaded exclusively from `.env` at runtime, ensuring they are never logged, printed, or hardcoded.
 
 ## Architecture & Project Structure
 The codebase strictly follows a modular, layered structure to separate concerns effectively:
@@ -18,7 +22,9 @@ TradeCLI/
 │   ├── validators.py      # Input validation for symbols, prices, and quantities
 │   └── logging_config.py  # Dual-handler logger (Console + File)
 ├── cli.py                 # Typer application root, argument parsing, and UI presentation
-├── tests/                 # Pytest suite 
+├── tests/
+│   ├── conftest.py        # Pytest configuration to prevent log pollution
+│   └── test_*.py          # Pytest suite
 ├── logs/                  # Directory for outputting trading_bot.log
 ├── .env.example           # Template for environment variables (API credentials)
 ├── .flake8                # Linter configuration
@@ -160,7 +166,7 @@ python cli.py place-order ETHUSDT SELL STOP_MARKET 0.05 --stop-price 3000
 Run the included test and linting suite to verify component logic.
 
 **1. Unit Testing**
-Includes 42 unit tests comprehensively covering validator functions, order placement flows, HMAC signing logic, and CLI error states.
+Includes 44 unit tests comprehensively covering validator functions, order placement flows, HMAC signing logic, and CLI error states.
 ```bash
 pytest --cov=bot --cov=cli tests/
 ```
