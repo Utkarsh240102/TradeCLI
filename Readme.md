@@ -76,10 +76,57 @@ Execute immediately at the best available market price. Displays an order reques
 python cli.py place-order BTCUSDT BUY MARKET 0.01
 ```
 
+**Expected Output:**
+```
+📋 Order Request Summary
+  Symbol:     BTCUSDT
+  Side:       BUY
+  Type:       MARKET
+  Quantity:   0.01
+
+✓ SUCCESS: Order successfully placed! Order ID: 13685726082
+┌────── Order Details ───────┐
+│ {                          │
+│   "orderId": 13685726082,  │
+│   "symbol": "BTCUSDT",     │
+│   "status": "NEW",         │
+│   "side": "BUY",           │
+│   "type": "MARKET",        │
+│   "executedQty": "0.0000", │
+│   "avgPrice": "0.00",      │
+│   "cumQuote": "0.000000"   │
+│ }                          │
+└────────────────────────────┘
+```
+
 ### 2. Place a LIMIT Order
 Requires the `--price` (`-p`) option flag. The order rests until the market reaches your target. Displays an order request summary before execution.
 ```bash
 python cli.py place-order BTCUSDT SELL LIMIT 0.01 --price 75000
+```
+
+**Expected Output:**
+```
+📋 Order Request Summary
+  Symbol:     BTCUSDT
+  Side:       SELL
+  Type:       LIMIT
+  Quantity:   0.01
+  Price:      75000
+
+✓ SUCCESS: Order successfully placed! Order ID: 13685740093
+┌────── Order Details ───────┐
+│ {                          │
+│   "orderId": 13685740093,  │
+│   "symbol": "BTCUSDT",     │
+│   "status": "NEW",         │
+│   "side": "SELL",          │
+│   "type": "LIMIT",         │
+│   "executedQty": "0.0000", │
+│   "avgPrice": "0.00",      │
+│   "cumQuote": "0.000000"   │
+│ }                          │
+└────────────────────────────┘
 ```
 
 ### 3. Place a STOP_MARKET Order (Bonus)
@@ -87,6 +134,18 @@ Requires the `--stop-price` (`-s`) option flag, which natively acts as the `stop
 *(Note: Binance Testnet occasionally restricts `STOP_MARKET` on the standard `/order` endpoint for certain pairs, returning API error `[-4120] Order type not supported`. The CLI elegantly intercepts and displays this exact API rejection without crashing).*
 ```bash
 python cli.py place-order ETHUSDT SELL STOP_MARKET 0.05 --stop-price 3000
+```
+
+**Example Output (API Rejection — expected on Testnet):**
+```
+📋 Order Request Summary
+  Symbol:     ETHUSDT
+  Side:       SELL
+  Type:       STOP_MARKET
+  Quantity:   0.05
+  Stop Price: 3000
+
+✗ ERROR: Binance API Rejected the Order: [-4120] Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
 ```
 
 ## Logging & Error Handling
