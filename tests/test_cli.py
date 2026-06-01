@@ -19,6 +19,8 @@ def test_place_order_market_success(mock_client, mock_place_order):
     assert result.exit_code == 0
     assert "✓ SUCCESS" in result.stdout
     assert "555" in result.stdout
+    assert "Order Request Summary" in result.stdout
+    assert "BTCUSDT" in result.stdout
 
 
 def test_place_order_invalid_order_type():
