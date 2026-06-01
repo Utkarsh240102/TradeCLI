@@ -105,3 +105,11 @@ def test_place_order_network_error(mock_client, mock_market):
 
     assert result.exit_code == 1
     assert "Network issue: Cannot connect" in result.stdout
+
+
+def test_place_order_invalid_quantity():
+    """Test that a non-numeric quantity shows a clean Invalid input error."""
+    result = runner.invoke(app, ["place-order", "BTCUSDT", "BUY", "MARKET", "abc"])
+    assert result.exit_code == 1
+    assert "Invalid input" in result.stdout
+    assert "✗ ERROR" in result.stdout
