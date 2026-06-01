@@ -17,3 +17,22 @@
 2026-06-01T16:10:09 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
 2026-06-01T16:10:09 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
 2026-06-01T16:10:09 | ERROR    | trading_bot.cli | API Error during `place_order`: [-4120] Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-06-01T18:51:17 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T18:51:17 | INFO     | trading_bot.cli | Attempting to place MARKET BUY order for 0.01 BTCUSDT.
+2026-06-01T18:51:17 | INFO     | trading_bot.orders | Placing MARKET BUY 0.01 BTCUSDT
+2026-06-01T18:51:17 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'BUY', 'type': 'MARKET', 'quantity': '0.01', 'timestamp': 1780320077793, 'recvWindow': 5000}
+2026-06-01T18:51:19 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13699012540, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'r65dJzgrZrmLGmSHdudcHk', 'price': '0.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'MARKET', 'reduceOnly': False, 'closePosition': False, 'side': 'BUY', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'MARKET', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1780320079272}
+2026-06-01T18:51:19 | INFO     | trading_bot.orders | Order placed. ID: 13699012540 | Status: NEW
+2026-06-01T18:51:31 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T18:51:31 | INFO     | trading_bot.cli | Attempting to place LIMIT SELL order for 0.01 BTCUSDT.
+2026-06-01T18:51:31 | INFO     | trading_bot.orders | Placing LIMIT SELL 0.01 BTCUSDT @ 75000
+2026-06-01T18:51:31 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.01', 'price': '75000', 'timeInForce': 'GTC', 'timestamp': 1780320091542, 'recvWindow': 5000}
+2026-06-01T18:51:32 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13699023759, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'o18tzA9mLMrBO4ydLShFoz', 'price': '75000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1780320092211}
+2026-06-01T18:51:32 | INFO     | trading_bot.orders | Order placed. ID: 13699023759 | Status: NEW
+2026-06-01T18:52:01 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T18:52:01 | INFO     | trading_bot.cli | Attempting to place STOP_MARKET SELL order for 0.05 ETHUSDT.
+2026-06-01T18:52:01 | INFO     | trading_bot.orders | Placing STOP_MARKET SELL 0.05 ETHUSDT trigger @ 3000
+2026-06-01T18:52:01 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'ETHUSDT', 'side': 'SELL', 'type': 'STOP_MARKET', 'quantity': '0.05', 'stopPrice': '3000', 'timestamp': 1780320121886, 'recvWindow': 5000}
+2026-06-01T18:52:02 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
+2026-06-01T18:52:02 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-06-01T18:52:02 | ERROR    | trading_bot.cli | API Error during `place_order`: [-4120] Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
