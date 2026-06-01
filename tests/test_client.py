@@ -41,6 +41,7 @@ def test_sign(mock_env):
     signature = client._sign(query_string)
     assert isinstance(signature, str)
     assert len(signature) == 64
+    assert signature == "df276a22e744652badb4f61c168d214accff4c4abd5f36b4eabf240b5e076f89"
 
 
 @responses.activate
