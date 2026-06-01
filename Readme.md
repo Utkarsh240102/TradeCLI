@@ -186,7 +186,7 @@ python cli.py place-order ETHUSDT SELL STOP_MARKET 0.05 --stop-price 3000
 Run the included test and linting suite to verify component logic.
 
 **1. Unit Testing**
-Includes 44 unit tests comprehensively covering validator functions, order placement flows, HMAC signing logic, and CLI error states.
+Includes 42 unit tests comprehensively covering validator functions, order placement flows, HMAC signing logic, and CLI error states.
 ```bash
 pytest --cov=bot --cov=cli tests/
 ```
