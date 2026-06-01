@@ -62,6 +62,8 @@ BINANCE_API_SECRET="your_testnet_api_secret_here"
 BINANCE_BASE_URL="https://testnet.binancefuture.com"
 ```
 
+> ⚠️ **Security:** Never commit `.env` to version control — it contains your private API credentials. This file is already excluded via `.gitignore`.
+
 ## Usage & CLI Commands
 
 Access the integrated help menu at any time:
@@ -178,3 +180,4 @@ flake8 bot/ cli.py tests/
 - **USDT-Margined Futures Framework:** The bot interacts explicitly with the `/fapi/v1/order` endpoint for USDT-M futures on the Binance Testnet.
 - **Time in Force:** LIMIT orders automatically inject `timeInForce="GTC"` (Good 'Til Canceled) into the payload as it is mandatory for resting limit orders on Binance's backend.
 - **Server-Side Precision Validation:** To minimize latency and overhead, the bot validates basic types but allows Binance's server to act as the ultimate source of truth for numeric precision requirements (lot sizes/tick sizes). It returns any server limits elegantly back to the user via the CLI output.
+- **Credential Security:** API keys are loaded exclusively from `.env` at runtime and are never logged, printed, or hardcoded anywhere in the codebase. The `.gitignore` explicitly excludes `.env` from version control.
