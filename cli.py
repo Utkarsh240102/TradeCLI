@@ -119,6 +119,10 @@ def place_order(symbol: str = typer.Argument(...,
                     'Unknown')}")
         print_json_response(response, title="Order Details")
 
+    except ValueError as e:
+        print_error(f"Invalid input: {str(e)}")
+        logger.warning(f"Validation error in `place_order`: {e}")
+        raise typer.Exit(code=1)
     except BinanceAPIError as e:
         print_error(f"Binance API Rejected the Order: {str(e)}")
         logger.error(f"API Error during `place_order`: {e}")
