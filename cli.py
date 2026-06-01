@@ -91,6 +91,19 @@ def place_order(symbol: str = typer.Argument(...,
 
     try:
         client = BinanceClient()
+
+        # Print order request summary before execution
+        console.print(f"\n[bold cyan]📋 Order Request Summary[/bold cyan]")
+        console.print(f"  [dim]Symbol:[/dim]     {symbol}")
+        console.print(f"  [dim]Side:[/dim]       {side}")
+        console.print(f"  [dim]Type:[/dim]       {order_type}")
+        console.print(f"  [dim]Quantity:[/dim]   {quantity}")
+        if price:
+            console.print(f"  [dim]Price:[/dim]      {price}")
+        if stop_price:
+            console.print(f"  [dim]Stop Price:[/dim] {stop_price}")
+        console.print()
+
         logger.info(
             f"Attempting to place {order_type} {side} order for {quantity} {symbol}.")
 
