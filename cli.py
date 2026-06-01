@@ -73,10 +73,6 @@ def place_order(symbol: str = typer.Argument(...,
     side = side.upper()
     order_type = order_type.upper()
 
-    if side not in ["BUY", "SELL"]:
-        print_error("Side must be BUY or SELL")
-        raise typer.Exit(code=1)
-
     if order_type not in ["MARKET", "LIMIT", "STOP_MARKET"]:
         print_error("Order type must be MARKET, LIMIT, or STOP_MARKET")
         raise typer.Exit(code=1)
