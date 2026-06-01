@@ -486,3 +486,35 @@
 2026-04-16T02:06:48 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'STOP_MARKET', 'quantity': '0.01', 'stopPrice': '60000', 'timestamp': 1776285408398, 'recvWindow': 5000}
 2026-04-16T02:06:48 | DEBUG    | trading_bot.client | Response 400: {'code': -4120, 'msg': 'Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.'}
 2026-04-16T02:06:48 | ERROR    | trading_bot.client | Binance API error [-4120]: Order type not supported for this endpoint. Please use the Algo Order API endpoints instead.
+2026-06-01T15:46:41 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:46:41 | INFO     | trading_bot.cli | Attempting to place MARKET BUY order for 0.05 BTCUSDT.
+2026-06-01T15:46:41 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:46:41 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:46:41 | INFO     | trading_bot.cli | Attempting to place STOP_MARKET SELL order for 0.05 BTCUSDT.
+2026-06-01T15:46:41 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:46:41 | INFO     | trading_bot.cli | Attempting to place MARKET BUY order for 0.05 BTCUSDT.
+2026-06-01T15:46:41 | ERROR    | trading_bot.cli | Unexpected error in `place_order`
+Traceback (most recent call last):
+  File "D:\PROJECTS\TradeCLI\cli.py", line 98, in place_order
+    response = place_market_order(
+        client, symbol=symbol, side=side, quantity=quantity)
+  File "C:\Users\utkar\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\utkar\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\utkar\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: System meltdown!
+2026-06-01T15:46:41 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:46:41 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:46:41 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:46:41 | INFO     | trading_bot.cli | Attempting to place LIMIT SELL order for 0.05 BTCUSDT.
+2026-06-01T15:46:41 | ERROR    | trading_bot.cli | API Error during `place_order`: [-1102] Margin is insufficient
+2026-06-01T15:46:41 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:46:41 | INFO     | trading_bot.cli | Attempting to place MARKET BUY order for 0.05 BTCUSDT.
+2026-06-01T15:46:41 | ERROR    | trading_bot.cli | Network Error during `place_order`: Cannot connect to Binance
+2026-06-01T15:46:41 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:46:41 | INFO     | trading_bot.cli | Attempting to place MARKET BUY order for abc BTCUSDT.
+2026-06-01T15:46:41 | WARNING  | trading_bot.cli | Validation error in `place_order`: Quantity must be a valid number, got: 'abc'
