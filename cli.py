@@ -93,7 +93,7 @@ def place_order(symbol: str = typer.Argument(...,
         client = BinanceClient()
 
         # Print order request summary before execution
-        console.print(f"\n[bold cyan]📋 Order Request Summary[/bold cyan]")
+        console.print("\n[bold cyan]📋 Order Request Summary[/bold cyan]")
         console.print(f"  [dim]Symbol:[/dim]     {symbol}")
         console.print(f"  [dim]Side:[/dim]       {side}")
         console.print(f"  [dim]Type:[/dim]       {order_type}")
