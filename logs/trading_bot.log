@@ -68,3 +68,35 @@ Exception: System meltdown!
 2026-06-01T15:50:04 | DEBUG    | trading_bot.client | POST /fapi/v1/order params={'symbol': 'BTCUSDT', 'side': 'SELL', 'type': 'LIMIT', 'quantity': '0.01', 'price': '75000', 'timeInForce': 'GTC', 'timestamp': 1780309204568, 'recvWindow': 5000}
 2026-06-01T15:50:05 | DEBUG    | trading_bot.client | Response 200: {'orderId': 13685740093, 'symbol': 'BTCUSDT', 'status': 'NEW', 'clientOrderId': 'hNtwSxycjWrqR2C3oYmSsi', 'price': '75000.00', 'avgPrice': '0.00', 'origQty': '0.0100', 'executedQty': '0.0000', 'cumQty': '0.0000', 'cumQuote': '0.000000', 'timeInForce': 'GTC', 'type': 'LIMIT', 'reduceOnly': False, 'closePosition': False, 'side': 'SELL', 'positionSide': 'BOTH', 'stopPrice': '0.00', 'workingType': 'CONTRACT_PRICE', 'priceProtect': False, 'origType': 'LIMIT', 'priceMatch': 'NONE', 'selfTradePreventionMode': 'EXPIRE_MAKER', 'goodTillDate': 0, 'updateTime': 1780309204639}
 2026-06-01T15:50:05 | INFO     | trading_bot.orders | Order placed. ID: 13685740093 | Status: NEW
+2026-06-01T15:58:58 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:58:59 | INFO     | trading_bot.cli | Attempting to place MARKET BUY order for 0.05 BTCUSDT.
+2026-06-01T15:58:59 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:58:59 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:58:59 | INFO     | trading_bot.cli | Attempting to place STOP_MARKET SELL order for 0.05 BTCUSDT.
+2026-06-01T15:58:59 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:58:59 | INFO     | trading_bot.cli | Attempting to place MARKET BUY order for 0.05 BTCUSDT.
+2026-06-01T15:58:59 | ERROR    | trading_bot.cli | Unexpected error in `place_order`
+Traceback (most recent call last):
+  File "D:\PROJECTS\TradeCLI\cli.py", line 111, in place_order
+    response = place_market_order(
+        client, symbol=symbol, side=side, quantity=quantity)
+  File "C:\Users\utkar\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\utkar\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\utkar\AppData\Local\Programs\Python\Python313\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: System meltdown!
+2026-06-01T15:58:59 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:58:59 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:58:59 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:58:59 | INFO     | trading_bot.cli | Attempting to place LIMIT SELL order for 0.05 BTCUSDT.
+2026-06-01T15:58:59 | ERROR    | trading_bot.cli | API Error during `place_order`: [-1102] Margin is insufficient
+2026-06-01T15:58:59 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:58:59 | INFO     | trading_bot.cli | Attempting to place MARKET BUY order for 0.05 BTCUSDT.
+2026-06-01T15:58:59 | ERROR    | trading_bot.cli | Network Error during `place_order`: Cannot connect to Binance
+2026-06-01T15:58:59 | DEBUG    | trading_bot.cli | CLI initialized and logging configured.
+2026-06-01T15:58:59 | INFO     | trading_bot.cli | Attempting to place MARKET BUY order for abc BTCUSDT.
+2026-06-01T15:58:59 | WARNING  | trading_bot.cli | Validation error in `place_order`: Quantity must be a valid number, got: 'abc'
