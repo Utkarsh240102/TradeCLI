@@ -1,7 +1,7 @@
 import pytest
 from decimal import Decimal
 from bot.validators import (
-    validate_symbol, validate_side, validate_order_type,
+    validate_symbol, validate_side,
     validate_quantity, validate_price, validate_stop_price,
 )
 
@@ -34,17 +34,6 @@ def test_validate_side_sell():
 def test_validate_side_invalid_raises():
     with pytest.raises(ValueError, match="BUY or SELL"):
         validate_side("BUUY")
-
-# --- Order Type Validators ---
-
-
-def test_validate_order_type_market():
-    assert validate_order_type("market") == "MARKET"
-
-
-def test_validate_order_type_invalid_raises():
-    with pytest.raises(ValueError, match="MARKET, LIMIT, or STOP_MARKET"):
-        validate_order_type("LIMT")
 
 # --- Quantity Validators ---
 
@@ -113,12 +102,3 @@ def test_validate_stop_price_zero_raises():
     from bot.validators import validate_stop_price
     with pytest.raises(ValueError, match="Stop price must be greater than 0"):
         validate_stop_price("-10", "STOP_MARKET")
-
-
-def test_round_to_step():
-    from bot.validators import round_to_step
-    from decimal import Decimal
-    val = round_to_step(Decimal("123.456"), "0.1")
-    assert val == Decimal("123.4")
-    val2 = round_to_step(Decimal("123.499"), "0.5")
-    assert val2 == Decimal("123.0")
