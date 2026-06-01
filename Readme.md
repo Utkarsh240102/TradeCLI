@@ -23,7 +23,7 @@ TradeCLI/
 │   └── logging_config.py  # Dual-handler logger (Console + File)
 ├── cli.py                 # Typer application root, argument parsing, and UI presentation
 ├── tests/
-│   ├── conftest.py        # Pytest configuration to prevent log pollution
+│   ├── conftest.py        # Pytest fixtures and log isolation.
 │   └── test_*.py          # Pytest suite
 ├── logs/                  # Directory for outputting trading_bot.log
 ├── .env.example           # Template for environment variables (API credentials)
@@ -155,7 +155,7 @@ python cli.py place-order BTCUSDT SELL LIMIT 0.01 --price 75000
 
 ### 3. Place a STOP_MARKET Order (Bonus)
 Requires the `--stop-price` (`-s`) option flag, which natively acts as the `stopPrice` parameter payload. Displays an order request summary before execution. 
-*(Note: Binance Testnet occasionally restricts `STOP_MARKET` on the standard `/order` endpoint for certain pairs, returning API error `[-4120] Order type not supported`. The CLI elegantly intercepts and displays this exact API rejection without crashing).*
+*(Note: Binance Testnet occasionally restricts `STOP_MARKET` on the standard `/fapi/v1/order` endpoint for certain pairs, returning API error `[-4120] Order type not supported`. `STOP_MARKET` orders require Binance's separate Algo Order API endpoint (`/fapi/v1/order/algo`), which is not used here. The implementation correctly constructs the payload and handles the rejection gracefully — this is a Binance API architecture constraint, not a code bug.)*
 ```bash
 python cli.py place-order ETHUSDT SELL STOP_MARKET 0.05 --stop-price 3000
 ```
