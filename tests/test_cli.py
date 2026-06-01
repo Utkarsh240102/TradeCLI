@@ -64,6 +64,10 @@ def test_place_order_generic_exception(mock_client, mock_market):
 
     assert result.exit_code == 1
     assert "An unexpected error occurred: System meltdown!" in result.stdout
+
+
+def test_place_order_invalid_side():
+    """Test that specifying an invalid side throws an error."""
     result = runner.invoke(
         app, ["place-order", "BTCUSDT", "HODL", "MARKET", "0.05"])
 
