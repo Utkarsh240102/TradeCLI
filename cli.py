@@ -43,7 +43,7 @@ def main():
     We use it to set up our logging configuration.
     """
     setup_logging()
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger("trading_bot.cli")
     logger.debug("CLI initialized and logging configured.")
 
 
@@ -68,7 +68,7 @@ def place_order(symbol: str = typer.Argument(...,
     """
     Place a new order on Binance Futures Testnet.
     """
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger("trading_bot.cli")
 
     side = side.upper()
     order_type = order_type.upper()
